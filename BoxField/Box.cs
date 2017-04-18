@@ -59,16 +59,11 @@ namespace BoxField
 
             return boxRec.IntersectsWith(heroRec);
         }
-        public Boolean Collision2(Obstacle bullets)
+        public Boolean Collision2(Obstacle bullet, Obstacle b)
         {
-            int boxSize, boxSpeed;
-
-            boxSize = 1; 
-            boxSpeed = 1;
-            List<Obstacle> obstacles = new List<Obstacle>();
-            Obstacle b = new Obstacle(100, 100, boxSize, boxSpeed);
+            
             Rectangle boxRec = new Rectangle(b.x, b.y, b.size, b.size);
-            Rectangle bulletRec = new Rectangle(bullets.x, bullets.y, bullets.size, bullets.size);
+            Rectangle bulletRec = new Rectangle(bullet.x, bullet.y, bullet.size, bullet.size);
 
             return bulletRec.IntersectsWith(boxRec);
         }

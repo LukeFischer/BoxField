@@ -36,7 +36,7 @@
             // 
             // overLabel
             // 
-            this.overLabel.Location = new System.Drawing.Point(139, 87);
+            this.overLabel.Location = new System.Drawing.Point(228, 0);
             this.overLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.overLabel.Name = "overLabel";
             this.overLabel.Size = new System.Drawing.Size(531, 100);
@@ -68,6 +68,7 @@
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(316, 66);
             this.scoreLabel.TabIndex = 4;
+            
             // 
             // OverScreen
             // 

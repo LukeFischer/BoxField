@@ -19,7 +19,10 @@ namespace BoxField
 
         Random randNum = new Random();
 
-
+        //keep score
+        public static int score;
+        //Keep track of obstacles destroyed
+        public static int destroyed;
         //used to draw boxes on screen
         
         List<Obstacle> obstacles = new List<Obstacle>();
@@ -47,10 +50,6 @@ namespace BoxField
 
 
         }
-
-
-        //Score
-        int score;
 
         public GameScreen()
         {
@@ -238,38 +237,29 @@ namespace BoxField
                     f.Controls.Remove(this);
                     OverScreen os = new OverScreen();
                     f.Controls.Add(os);
-                }   
-            }
+                }
+            
 
-            #endregion
-            foreach (Obstacle b in bullets)
-            {
-                Boolean hasCollided2 = false;
-                hasCollided2 = b.Collision(b);
-
-                if (hasCollided2 == true)
+                #endregion
+                foreach (Obstacle bullet in bullets)
                 {
-                    gameLoop.Stop();
+                    Boolean hasCollided2 = false;
+                    hasCollided2 = bullet.Collision2(bullet, b);
 
-                    Form f = this.FindForm();
-                    f.Controls.Remove(this);
-                    OverScreen os = new OverScreen();
-                    f.Controls.Add(os);
+                    if (hasCollided2 == true)
+                    {
+                        obstacles.Remove(b);
+                        bullets.Remove(bullet);
+                        destroyed++;
+                        return;
+                    }
                 }
             }
 
         
-            //foreach (Obstacle bullet in obstacles)
-            //{
-            //    Boolean hasCollided1 = false;
-            //    hasCollided1 = bullet.Collision2(bullet);
-            //    if (hasCollided1 == true)
-            //    {
+            
 
-            //        gameLoop.Stop();
-            //    }
-
-            //}
+            
 
             #region move bullets
 

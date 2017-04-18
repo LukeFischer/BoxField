@@ -17,7 +17,9 @@ namespace BoxField
             InitializeComponent();
             
             overLabel.Text = " You Lose";
-            //scoreLabel.Text = "You last" + score + "seconds";
+            GameScreen.score = GameScreen.score / 60;
+            scoreLabel.Text = "You lasted" + " " + GameScreen.score + " " + "seconds";
+
         }
 
         private void replayButton_Click(object sender, EventArgs e)
@@ -34,5 +36,9 @@ namespace BoxField
         {
             Application.Exit();
         }
+
+        
+
+        }
     }
-}
+
