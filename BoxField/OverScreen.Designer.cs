@@ -32,19 +32,22 @@
             this.replayButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
             this.scoreLabel = new System.Windows.Forms.Label();
+            this.destroyedLabel = new System.Windows.Forms.Label();
+            this.totalScore = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // overLabel
             // 
-            this.overLabel.Location = new System.Drawing.Point(228, 0);
+            this.overLabel.BackColor = System.Drawing.Color.Transparent;
+            this.overLabel.Location = new System.Drawing.Point(325, 0);
             this.overLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.overLabel.Name = "overLabel";
-            this.overLabel.Size = new System.Drawing.Size(531, 100);
+            this.overLabel.Size = new System.Drawing.Size(202, 49);
             this.overLabel.TabIndex = 0;
             // 
             // replayButton
             // 
-            this.replayButton.Location = new System.Drawing.Point(101, 238);
+            this.replayButton.Location = new System.Drawing.Point(178, 423);
             this.replayButton.Name = "replayButton";
             this.replayButton.Size = new System.Drawing.Size(170, 52);
             this.replayButton.TabIndex = 1;
@@ -54,7 +57,7 @@
             // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(395, 238);
+            this.exitButton.Location = new System.Drawing.Point(507, 423);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(201, 52);
             this.exitButton.TabIndex = 2;
@@ -64,16 +67,35 @@
             // 
             // scoreLabel
             // 
-            this.scoreLabel.Location = new System.Drawing.Point(198, 169);
+            this.scoreLabel.BackColor = System.Drawing.Color.Transparent;
+            this.scoreLabel.Location = new System.Drawing.Point(282, 62);
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(316, 66);
             this.scoreLabel.TabIndex = 4;
-            
+            // 
+            // destroyedLabel
+            // 
+            this.destroyedLabel.BackColor = System.Drawing.Color.Transparent;
+            this.destroyedLabel.Location = new System.Drawing.Point(267, 152);
+            this.destroyedLabel.Name = "destroyedLabel";
+            this.destroyedLabel.Size = new System.Drawing.Size(316, 49);
+            this.destroyedLabel.TabIndex = 5;
+            // 
+            // totalScore
+            // 
+            this.totalScore.BackColor = System.Drawing.Color.Transparent;
+            this.totalScore.Location = new System.Drawing.Point(247, 238);
+            this.totalScore.Name = "totalScore";
+            this.totalScore.Size = new System.Drawing.Size(630, 58);
+            this.totalScore.TabIndex = 6;
             // 
             // OverScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::BoxField.Properties.Resources.PlaneCrash;
+            this.Controls.Add(this.totalScore);
+            this.Controls.Add(this.destroyedLabel);
             this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.replayButton);
@@ -81,7 +103,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "OverScreen";
-            this.Size = new System.Drawing.Size(802, 531);
+            this.Size = new System.Drawing.Size(900, 630);
             this.ResumeLayout(false);
 
         }
@@ -92,5 +114,7 @@
         private System.Windows.Forms.Button replayButton;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Label scoreLabel;
+        private System.Windows.Forms.Label destroyedLabel;
+        private System.Windows.Forms.Label totalScore;
     }
 }

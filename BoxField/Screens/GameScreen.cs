@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Media;
 
 
 namespace BoxField
@@ -24,10 +25,10 @@ namespace BoxField
         //Keep track of obstacles destroyed
         public static int destroyed;
         //used to draw boxes on screen
-        
+        int time;
         List<Obstacle> obstacles = new List<Obstacle>();
         List<Obstacle> bullets = new List<Obstacle>();
-
+        List<Obstacle> stars = new List<Obstacle>();
         //box values
         int boxSize, boxSpeed, newBoxCounter;
 
@@ -47,16 +48,14 @@ namespace BoxField
             bulletSize = 10;
             Obstacle bullet = new Obstacle(dino.x, dino.y, bulletSize, bulletSpeed);
             bullets.Add(bullet);
-
-
+            SoundPlayer player = new SoundPlayer(Properties.Resources.Shotgun);
+            player.Play();
         }
 
         public GameScreen()
         {
             InitializeComponent();
             OnStart();
-            
-
         }
 
         /// <summary>
@@ -64,11 +63,7 @@ namespace BoxField
         /// </summary>
         public void OnStart()
         {
-            //TODO - set game start values
-
-            
-
-            
+            //Set starting values
             boxSpeed = 6;
             newBoxCounter = 0;
             int rand = randNum.Next(1, 50);
@@ -77,21 +72,12 @@ namespace BoxField
             obstacles.Add(b);
             rand = 0;
 
-            //Box r = new Box(500, 0, boxSize, boxSpeed);
-            //boxes.Add(r);
-
             //set hero values
             dinoSpeed = 10;
             dinoSize = 20;
             dino = new Obstacle(10, 400, dinoSize, dinoSpeed);
 
-            
-            //dino.BackgroundImage = Properties.Resources.CartoonDino;
-
-
-
-
-        }
+         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
@@ -174,23 +160,19 @@ namespace BoxField
             #region add new box if it is time
             newBoxCounter++;
             score++;
+            time++;
+            timeLabel.Text = Convert.ToString(time) + " " + "Milliseconds";
+            gsdestroyedLabel.Text = Convert.ToString(destroyed) + " " + "Objects Destroyed";
 
             if (newBoxCounter == 5)
             {
                 int rand = randNum.Next(1, 500);
                 int boxRand = randNum.Next(10, 50);
 
-
                 Obstacle b = new Obstacle(900, rand, boxRand, boxSpeed);
                 obstacles.Add(b);
 
-
-
-                //Box r = new Box(rand, rand, boxSize, boxSpeed);
-                //boxes.Add(r);
-
                 newBoxCounter = 0;
-
             }
 
             #endregion
@@ -231,6 +213,9 @@ namespace BoxField
 
                 if (hasCollided == true)
                 {
+                    SoundPlayer player = new SoundPlayer(Properties.Resources.Bomb);
+                    player.Play();
+                    Thread.Sleep(1000);
                     gameLoop.Stop();
 
                     Form f = this.FindForm();
@@ -248,6 +233,7 @@ namespace BoxField
 
                     if (hasCollided2 == true)
                     {
+                        
                         obstacles.Remove(b);
                         bullets.Remove(bullet);
                         destroyed++;
@@ -257,10 +243,6 @@ namespace BoxField
             }
 
         
-            
-
-            
-
             #region move bullets
 
             foreach (Obstacle b in bullets)
@@ -281,7 +263,6 @@ namespace BoxField
                     SolidBrush boxBrush = new SolidBrush(Color.Red);
                     e.Graphics.FillRectangle(boxBrush, b.x, b.y, b.size, b.size);
                     
-                    
             }
             foreach(Obstacle bullet in bullets)
             {
@@ -292,8 +273,6 @@ namespace BoxField
             SolidBrush dinoBrush = new SolidBrush(Color.Gold);
             e.Graphics.FillEllipse(dinoBrush, dino.x, dino.y, dino.size, dino.size);
 
-
-           
-        }
+         }
     }
 }
