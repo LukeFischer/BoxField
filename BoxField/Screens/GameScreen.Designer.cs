@@ -33,6 +33,7 @@
             this.timeLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.gsdestroyedLabel = new System.Windows.Forms.Label();
+            this.boundaryLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // gameLoop
@@ -68,11 +69,21 @@
             this.gsdestroyedLabel.Size = new System.Drawing.Size(270, 35);
             this.gsdestroyedLabel.TabIndex = 2;
             // 
+            // boundaryLabel
+            // 
+            this.boundaryLabel.BackColor = System.Drawing.Color.Transparent;
+            this.boundaryLabel.ForeColor = System.Drawing.Color.LightGreen;
+            this.boundaryLabel.Location = new System.Drawing.Point(210, 154);
+            this.boundaryLabel.Name = "boundaryLabel";
+            this.boundaryLabel.Size = new System.Drawing.Size(426, 149);
+            this.boundaryLabel.TabIndex = 3;
+            // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.boundaryLabel);
             this.Controls.Add(this.gsdestroyedLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.timeLabel);
@@ -94,5 +105,6 @@
         private System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label gsdestroyedLabel;
+        private System.Windows.Forms.Label boundaryLabel;
     }
 }

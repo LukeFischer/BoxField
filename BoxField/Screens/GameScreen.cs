@@ -30,8 +30,8 @@ namespace BoxField
         List<Obstacle> bullets = new List<Obstacle>();
         List<Obstacle> stars = new List<Obstacle>();
         //box values
-        int boxSize, boxSpeed, newBoxCounter;
-
+        int boxSize, boxSpeed, newBoxCounter, topBoundary, bottomBoundary;
+        int countdown;
         //heroValues
         Obstacle dino;
         int dinoSpeed;
@@ -158,6 +158,23 @@ namespace BoxField
             #endregion
 
             #region add new box if it is time
+            if (dino.y > 500 || dino.y == 500)
+            {
+                boundaryLabel.Text = "RETURN IN 3 SECONDS OR DIE";
+                bottomBoundary++;
+            }
+            if (dino.y < 0 || dino.y == 0)
+            {
+                boundaryLabel.Text = "RETURN IN 3 SECONDS OR DIE";
+                topBoundary++;
+            }
+            if (dino.y > 0 && dino.y < 500)
+            {
+                boundaryLabel.Text = "";
+                topBoundary = 0;
+                bottomBoundary = 0;
+            }
+
             newBoxCounter++;
             score++;
             time++;
@@ -183,6 +200,20 @@ namespace BoxField
             {
                 obstacles.RemoveAt(0);
             }
+
+
+            if (bottomBoundary == 180)
+            {
+                countdown = 3;
+                gameLoop.Stop();
+            }
+            if (topBoundary==180)
+            {
+                countdown = 3;
+                
+                gameLoop.Stop();
+            }
+            
             #endregion
 
             #region move hero
