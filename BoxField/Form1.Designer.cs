@@ -28,7 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.sizeTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
+            // 
+            // sizeTimer
+            // 
+            this.sizeTimer.Tick += new System.EventHandler(this.sizeTimer_Tick);
             // 
             // Form1
             // 
@@ -45,6 +51,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer sizeTimer;
     }
 }
 

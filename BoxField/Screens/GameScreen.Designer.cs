@@ -34,6 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.gsdestroyedLabel = new System.Windows.Forms.Label();
             this.boundaryLabel = new System.Windows.Forms.Label();
+            this.pfastLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // gameLoop
@@ -71,18 +72,30 @@
             // 
             // boundaryLabel
             // 
-            this.boundaryLabel.BackColor = System.Drawing.Color.Transparent;
-            this.boundaryLabel.ForeColor = System.Drawing.Color.LightGreen;
-            this.boundaryLabel.Location = new System.Drawing.Point(210, 154);
+            this.boundaryLabel.AutoSize = true;
+            this.boundaryLabel.ForeColor = System.Drawing.Color.Lime;
+            this.boundaryLabel.Location = new System.Drawing.Point(245, 141);
             this.boundaryLabel.Name = "boundaryLabel";
-            this.boundaryLabel.Size = new System.Drawing.Size(426, 149);
+            this.boundaryLabel.Size = new System.Drawing.Size(0, 13);
             this.boundaryLabel.TabIndex = 3;
+            // 
+            // pfastLabel
+            // 
+            this.pfastLabel.AutoSize = true;
+            this.pfastLabel.BackColor = System.Drawing.Color.Transparent;
+            this.pfastLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pfastLabel.ForeColor = System.Drawing.Color.White;
+            this.pfastLabel.Location = new System.Drawing.Point(351, 203);
+            this.pfastLabel.Name = "pfastLabel";
+            this.pfastLabel.Size = new System.Drawing.Size(0, 42);
+            this.pfastLabel.TabIndex = 4;
             // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.pfastLabel);
             this.Controls.Add(this.boundaryLabel);
             this.Controls.Add(this.gsdestroyedLabel);
             this.Controls.Add(this.label2);
@@ -106,5 +119,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label gsdestroyedLabel;
         private System.Windows.Forms.Label boundaryLabel;
+        private System.Windows.Forms.Label pfastLabel;
     }
 }

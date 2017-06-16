@@ -9,6 +9,7 @@ namespace BoxField
 {
     class Obstacle
     {
+      
         public int x, y, size, speed;
         
         public Obstacle(int _x, int _y, int _size, int _speed)
@@ -17,8 +18,10 @@ namespace BoxField
             y = _y;
             size = _size;
             speed = _speed;
+            
 
         }
+
         
         public void BoxMove()
         {
@@ -26,21 +29,45 @@ namespace BoxField
         }
         public void bulletMove()
         {
-            x = x + speed;
+            
+                x = x + speed;
+            
         }
+        public void powerMove()
+        {
+            y = y + speed;
+        }
+        public void fastBullets()
+        {
+            if (GameScreen.active == true)
+            {
+                x = x + speed * 2;
+            }
+        }
+        public void smallBoxes()
+        {
+            if (GameScreen.cluster == true)
+            {
+                x = x - speed * 2;
+            }
+        }
+
         public void HeroMove()
         {
             y = y + speed;
         }
         public void Move(string direction)
         {
-            if (direction == "left")
+            if (GameScreen.horizontal == true)
             {
-                x = x - speed;
-            }
-            if (direction == "right")
-            {
-                x = x + speed;
+                if (direction == "left")
+                {
+                    x = x - speed;
+                }
+                if (direction == "right")
+                {
+                    x = x + speed;
+                }
             }
             if (direction == "up")
             {

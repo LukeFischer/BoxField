@@ -19,27 +19,34 @@ namespace BoxField
         Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, bDown, nDown, mDown, spaceDown;
 
         Random randNum = new Random();
-
+        public static bool active;
+        public static bool invincible;
+        public static bool horizontal;
+        public static bool cluster;
         //keep score
         public static int score;
         //Keep track of obstacles destroyed
         public static int destroyed;
         //used to draw boxes on screen
         int time;
+        int pfastTime;
         List<Obstacle> obstacles = new List<Obstacle>();
         List<Obstacle> bullets = new List<Obstacle>();
-        List<Obstacle> stars = new List<Obstacle>();
+        int heroSize;
+        
+      
         //box values
-        int boxSize, boxSpeed, newBoxCounter, topBoundary, bottomBoundary;
-        int countdown;
+        int newBoxCounter, topBoundary, bottomBoundary;
+        
+        int countdown = 3;
         //heroValues
         Obstacle dino;
-        int dinoSpeed;
-        int dinoSize;
-
+       
+        
+       
         //bullet values
         
-        int bulletSpeed;
+        public static int bulletSpeed;
         int bulletSize;
 
         private void GameScreen_Click(object sender, EventArgs e)
@@ -56,6 +63,10 @@ namespace BoxField
         {
             InitializeComponent();
             OnStart();
+            active = false;
+            invincible = false;
+            cluster = true;
+     
         }
 
         /// <summary>
@@ -64,20 +75,21 @@ namespace BoxField
         public void OnStart()
         {
             //Set starting values
-            boxSpeed = 6;
+            
+          
             newBoxCounter = 0;
             int rand = randNum.Next(1, 50);
-            boxSize = rand;
-            Obstacle b = new Obstacle(100, 500, boxSize, boxSpeed);
+         
+            Obstacle b = new Obstacle(100, 500, rand, Form1.boxSize);
             obstacles.Add(b);
             rand = 0;
 
             //set hero values
-            dinoSpeed = 10;
-            dinoSize = 20;
-            dino = new Obstacle(10, 400, dinoSize, dinoSpeed);
+           
+            heroSize = 20;
+            dino = new Obstacle(10, 400, heroSize, Form1.heroSpeed);
 
-         }
+        }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
@@ -153,41 +165,91 @@ namespace BoxField
             foreach (Obstacle b in obstacles)
             {
                 b.BoxMove();
+                b.smallBoxes();
+                
             }
+            
 
             #endregion
 
             #region add new box if it is time
+
             if (dino.y > 500 || dino.y == 500)
             {
-                boundaryLabel.Text = "RETURN IN 3 SECONDS OR DIE";
+                
+                boundaryLabel.Text = "RETURN IN " + countdown+ " SECONDS OR DIE";
                 bottomBoundary++;
+         
+                if (bottomBoundary == 60)
+                {
+
+                    countdown = 2;
+                }
+                if (bottomBoundary== 120)
+                {
+                    countdown = 1;
+                }
+                if (bottomBoundary == 180)
+                {
+                    countdown = 0;
+                }
+
             }
             if (dino.y < 0 || dino.y == 0)
             {
-                boundaryLabel.Text = "RETURN IN 3 SECONDS OR DIE";
+                boundaryLabel.Text = "RETURN IN " + countdown+ " SECONDS OR DIE";
                 topBoundary++;
+                
+               
+                if (topBoundary == 60)
+                {
+                    countdown = 2;
+                }
+                if (topBoundary == 120)
+                {
+                    countdown = 1;
+                }
+                if (topBoundary == 180)
+                {
+                    countdown = 0;
+                    gameLoop.Stop();
+                    Form f = this.FindForm();
+                    f.Controls.Remove(this);
+                    OverScreen os = new OverScreen();
+                    f.Controls.Add(os);
+                }
+
             }
             if (dino.y > 0 && dino.y < 500)
             {
                 boundaryLabel.Text = "";
                 topBoundary = 0;
                 bottomBoundary = 0;
+                countdown = 3;
             }
-
+            if (destroyed >10)
+            {
+                pfastTime++;
+            }
             newBoxCounter++;
             score++;
             time++;
-            timeLabel.Text = Convert.ToString(time) + " " + "Milliseconds";
+            timeLabel.Text = Convert.ToString(time) + " " + "score";
             gsdestroyedLabel.Text = Convert.ToString(destroyed) + " " + "Objects Destroyed";
 
             if (newBoxCounter == 5)
             {
+                 
                 int rand = randNum.Next(1, 500);
                 int boxRand = randNum.Next(10, 50);
+                
 
-                Obstacle b = new Obstacle(900, rand, boxRand, boxSpeed);
+                Obstacle b = new Obstacle(900, rand, boxRand, Form1.boxSpeed);
                 obstacles.Add(b);
+
+           
+
+          
 
                 newBoxCounter = 0;
             }
@@ -212,6 +274,11 @@ namespace BoxField
                 countdown = 3;
                 
                 gameLoop.Stop();
+                Form f = this.FindForm();
+                f.Controls.Remove(this);
+                OverScreen os = new OverScreen();
+                f.Controls.Add(os);
+
             }
             
             #endregion
@@ -266,10 +333,14 @@ namespace BoxField
                     {
                         
                         obstacles.Remove(b);
-                        bullets.Remove(bullet);
+                        if (invincible == false)
+                        {
+                            bullets.Remove(bullet);
+                        }
                         destroyed++;
                         return;
                     }
+                    
                 }
             }
 
@@ -279,31 +350,66 @@ namespace BoxField
             foreach (Obstacle b in bullets)
             {
                 b.bulletMove();
+                if (destroyed >= 10)
+                {
+                   
+                    pfastLabel.Text = "Fast bullets";
+                    if (pfastTime==60)
+                    {
+                        pfastLabel.Visible = false;
+                    }
+
+                    b.fastBullets();
+                    
+                    active = true;
+                    if (pfastTime >= 50)
+                    {
+                       // pfastLabel.Text = "Penetrating Bullets";
+                        active = false;
+                        invincible = true;
+                    }
+                    
+                }
             }
 
             #endregion
             Refresh();
         }
-        
+
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             //  draw boxes to screen
             foreach (Obstacle b in obstacles)
-            { 
-                    SolidBrush boxBrush = new SolidBrush(Color.Red);
-                    e.Graphics.FillRectangle(boxBrush, b.x, b.y, b.size, b.size);
-                    
+            {
+                SolidBrush boxBrush = new SolidBrush(Color.Red);
+                e.Graphics.FillRectangle(boxBrush, b.x, b.y, b.size, b.size);
+
             }
-            foreach(Obstacle bullet in bullets)
+            foreach (Obstacle bullet in bullets)
             {
                 SolidBrush bulletBrush = new SolidBrush(Color.Gray);
                 e.Graphics.FillRectangle(bulletBrush, bullet.x, bullet.y, bullet.size, bullet.size);
-            }    
-            
-            SolidBrush dinoBrush = new SolidBrush(Color.Gold);
-            e.Graphics.FillEllipse(dinoBrush, dino.x, dino.y, dino.size, dino.size);
+            }
 
-         }
+
+
+
+            if (CharacterScreen.hero == 1)
+            {
+                SolidBrush dinoBrush = new SolidBrush(Color.Green);
+                e.Graphics.FillEllipse(dinoBrush, dino.x, dino.y, dino.size, dino.size);
+            }
+            if (CharacterScreen.hero == 2)
+            {
+                SolidBrush dinoBrush = new SolidBrush(Color.Red);
+                e.Graphics.FillEllipse(dinoBrush, dino.x, dino.y, dino.size, dino.size);
+            }
+            if (CharacterScreen.hero == 3)
+            {
+                SolidBrush dinoBrush = new SolidBrush(Color.Yellow);
+                e.Graphics.FillEllipse(dinoBrush, dino.x, dino.y, dino.size, dino.size);
+            }
+        }
     }
 }

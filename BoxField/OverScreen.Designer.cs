@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OverScreen));
             this.overLabel = new System.Windows.Forms.Label();
             this.replayButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
@@ -39,6 +40,7 @@
             // overLabel
             // 
             this.overLabel.BackColor = System.Drawing.Color.Transparent;
+            this.overLabel.ForeColor = System.Drawing.Color.White;
             this.overLabel.Location = new System.Drawing.Point(325, 0);
             this.overLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.overLabel.Name = "overLabel";
@@ -68,6 +70,7 @@
             // scoreLabel
             // 
             this.scoreLabel.BackColor = System.Drawing.Color.Transparent;
+            this.scoreLabel.ForeColor = System.Drawing.Color.White;
             this.scoreLabel.Location = new System.Drawing.Point(282, 62);
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(316, 66);
@@ -76,6 +79,7 @@
             // destroyedLabel
             // 
             this.destroyedLabel.BackColor = System.Drawing.Color.Transparent;
+            this.destroyedLabel.ForeColor = System.Drawing.Color.White;
             this.destroyedLabel.Location = new System.Drawing.Point(267, 152);
             this.destroyedLabel.Name = "destroyedLabel";
             this.destroyedLabel.Size = new System.Drawing.Size(316, 49);
@@ -84,6 +88,7 @@
             // totalScore
             // 
             this.totalScore.BackColor = System.Drawing.Color.Transparent;
+            this.totalScore.ForeColor = System.Drawing.Color.White;
             this.totalScore.Location = new System.Drawing.Point(247, 238);
             this.totalScore.Name = "totalScore";
             this.totalScore.Size = new System.Drawing.Size(630, 58);
@@ -93,7 +98,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::BoxField.Properties.Resources.PlaneCrash;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.Controls.Add(this.totalScore);
             this.Controls.Add(this.destroyedLabel);
             this.Controls.Add(this.scoreLabel);
