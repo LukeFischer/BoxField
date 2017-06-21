@@ -61,7 +61,7 @@
             // 
             this.mouseLabel.BackColor = System.Drawing.Color.Transparent;
             this.mouseLabel.Image = ((System.Drawing.Image)(resources.GetObject("mouseLabel.Image")));
-            this.mouseLabel.Location = new System.Drawing.Point(494, 175);
+            this.mouseLabel.Location = new System.Drawing.Point(449, 175);
             this.mouseLabel.Name = "mouseLabel";
             this.mouseLabel.Size = new System.Drawing.Size(346, 290);
             this.mouseLabel.TabIndex = 2;
@@ -80,7 +80,7 @@
             // 
             this.clickLabel.BackColor = System.Drawing.Color.Transparent;
             this.clickLabel.Image = ((System.Drawing.Image)(resources.GetObject("clickLabel.Image")));
-            this.clickLabel.Location = new System.Drawing.Point(593, 248);
+            this.clickLabel.Location = new System.Drawing.Point(548, 266);
             this.clickLabel.Name = "clickLabel";
             this.clickLabel.Size = new System.Drawing.Size(106, 108);
             this.clickLabel.TabIndex = 4;
@@ -89,7 +89,7 @@
             // 
             this.okButton.BackColor = System.Drawing.Color.LimeGreen;
             this.okButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.okButton.Location = new System.Drawing.Point(436, 379);
+            this.okButton.Location = new System.Drawing.Point(773, 400);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(122, 65);
             this.okButton.TabIndex = 5;

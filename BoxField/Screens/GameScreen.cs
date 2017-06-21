@@ -23,17 +23,20 @@ namespace BoxField
         public static bool invincible;
         public static bool horizontal;
         public static bool cluster;
+        public static bool pause;
         //keep score
         public static int score;
         //Keep track of obstacles destroyed
         public static int destroyed;
         //used to draw boxes on screen
+        int ammo;
         int time;
+        int ammoTime;
         int pfastTime;
         List<Obstacle> obstacles = new List<Obstacle>();
         List<Obstacle> bullets = new List<Obstacle>();
         int heroSize;
-        
+        int pause1;
       
         //box values
         int newBoxCounter, topBoundary, bottomBoundary;
@@ -41,8 +44,8 @@ namespace BoxField
         int countdown = 3;
         //heroValues
         Obstacle dino;
-       
-        
+
+      
        
         //bullet values
         
@@ -51,12 +54,23 @@ namespace BoxField
 
         private void GameScreen_Click(object sender, EventArgs e)
         {
+            pause = false;
+            gameLoop.Start();
+            if (ammo > 0)
+            {
+                ammo--;
+            }
+            
             bulletSpeed = 20;
             bulletSize = 10;
-            Obstacle bullet = new Obstacle(dino.x, dino.y, bulletSize, bulletSpeed);
-            bullets.Add(bullet);
+            if (ammo > 0)
+            {
+                Obstacle bullet = new Obstacle(dino.x, dino.y, bulletSize, bulletSpeed);
+                bullets.Add(bullet);
+            }
             SoundPlayer player = new SoundPlayer(Properties.Resources.Shotgun);
             player.Play();
+            
         }
 
         public GameScreen()
@@ -65,7 +79,7 @@ namespace BoxField
             OnStart();
             active = false;
             invincible = false;
-            cluster = true;
+            cluster = false;
      
         }
 
@@ -75,8 +89,8 @@ namespace BoxField
         public void OnStart()
         {
             //Set starting values
+            ammo = 10;
             
-          
             newBoxCounter = 0;
             int rand = randNum.Next(1, 50);
          
@@ -119,6 +133,8 @@ namespace BoxField
                     break;
                 case Keys.Space:
                     spaceDown = true;
+                    pause = true;
+                    
                     break;
                 default:
                     break;
@@ -161,15 +177,26 @@ namespace BoxField
 
         private void gameLoop_Tick(object sender, EventArgs e)
         {
+            
             #region  update location of all boxes 
             foreach (Obstacle b in obstacles)
             {
+                if (time > 1000)
+                {
+                    cluster = true;
+
+                }
                 b.BoxMove();
                 b.smallBoxes();
-                
             }
-            
-
+            if (pause==true)
+            {
+                gameLoop.Stop();
+            }
+            if (pause1==2)
+            {
+                pause = false;
+            }
             #endregion
 
             #region add new box if it is time
@@ -234,9 +261,18 @@ namespace BoxField
             newBoxCounter++;
             score++;
             time++;
+            ammoTime++;
             timeLabel.Text = Convert.ToString(time) + " " + "score";
             gsdestroyedLabel.Text = Convert.ToString(destroyed) + " " + "Objects Destroyed";
+            ammoLabel.Text = Convert.ToString(ammo) + " " + "bullets left";
 
+            if (ammoTime==200)
+            {
+                ammo = ammo + 10;
+                ammoTime = 0;
+                SoundPlayer player = new SoundPlayer(Properties.Resources.Reload1);
+                player.Play();
+            }
             if (newBoxCounter == 5)
             {
                  
@@ -331,7 +367,7 @@ namespace BoxField
 
                     if (hasCollided2 == true)
                     {
-                        
+                        ammo++;
                         obstacles.Remove(b);
                         if (invincible == false)
                         {

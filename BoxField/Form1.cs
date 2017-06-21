@@ -18,7 +18,7 @@ namespace BoxField
         public static int heroSpeed;
         public static int boxSpeed;
         public static int boxSize;
-
+        public static int ammo; 
         public Form1()
         {
             InitializeComponent();

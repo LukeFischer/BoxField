@@ -30,7 +30,7 @@ namespace BoxField
         public void bulletMove()
         {
             
-                x = x + speed;
+            x = x + speed;
             
         }
         public void powerMove()

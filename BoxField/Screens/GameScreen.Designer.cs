@@ -35,6 +35,7 @@
             this.gsdestroyedLabel = new System.Windows.Forms.Label();
             this.boundaryLabel = new System.Windows.Forms.Label();
             this.pfastLabel = new System.Windows.Forms.Label();
+            this.ammoLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // gameLoop
@@ -90,11 +91,21 @@
             this.pfastLabel.Size = new System.Drawing.Size(0, 42);
             this.pfastLabel.TabIndex = 4;
             // 
+            // ammoLabel
+            // 
+            this.ammoLabel.AutoSize = true;
+            this.ammoLabel.ForeColor = System.Drawing.Color.White;
+            this.ammoLabel.Location = new System.Drawing.Point(432, 20);
+            this.ammoLabel.Name = "ammoLabel";
+            this.ammoLabel.Size = new System.Drawing.Size(0, 13);
+            this.ammoLabel.TabIndex = 5;
+            // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.ammoLabel);
             this.Controls.Add(this.pfastLabel);
             this.Controls.Add(this.boundaryLabel);
             this.Controls.Add(this.gsdestroyedLabel);
@@ -120,5 +131,6 @@
         private System.Windows.Forms.Label gsdestroyedLabel;
         private System.Windows.Forms.Label boundaryLabel;
         private System.Windows.Forms.Label pfastLabel;
+        private System.Windows.Forms.Label ammoLabel;
     }
 }

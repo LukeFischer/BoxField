@@ -80,12 +80,31 @@ namespace BoxField.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gun_cocking_02 {
+            get {
+                object obj = ResourceManager.GetObject("gun_cocking_02", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap PlaneCrash {
             get {
                 object obj = ResourceManager.GetObject("PlaneCrash", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Reload1 {
+            get {
+                return ResourceManager.GetStream("Reload1", resourceCulture);
             }
         }
         
