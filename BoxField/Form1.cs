@@ -12,8 +12,7 @@ namespace BoxField
 {
     public partial class Form1 : Form
     {
-        int randomCounter;
-        Random randNum = new Random();
+        //Create integers for to use in the gamescreen
         public static int lives;
         public static int heroSpeed;
         public static int boxSpeed;
@@ -22,27 +21,27 @@ namespace BoxField
         public Form1()
         {
             InitializeComponent();
+           
+            //Boolean for green character power
             GameScreen.horizontal = false;
-
+            //Default difficulty values
             if (OptionScreen.difficulty ==0)
             {
                 Form1.lives = 3;
                 Form1.heroSpeed = 10;
                 Form1.boxSpeed = 6;
-
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Program goes directly to the GameScreen method on start
+            //Goes to main menu
             MainMenu ms = new MainMenu();
             this.Controls.Add(ms);
         }
 
-        private void sizeTimer_Tick(object sender, EventArgs e)
-        {
-            randomCounter++;
-        }
+        
+
+
     }
 }

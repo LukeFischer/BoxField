@@ -15,10 +15,13 @@ namespace BoxField
         public MainMenu()
         {
             InitializeComponent();
+            //Displays current date
+             dateLabel.Text = DateTime.Now.ToString("dddd") + " " + DateTime.Now.ToString("dd-MM-yy");
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
+            //Goes to character screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
             CharacterScreen cs = new CharacterScreen();
@@ -27,6 +30,7 @@ namespace BoxField
 
         private void optionsButton_Click(object sender, EventArgs e)
         {
+            //Goes to option screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
             OptionScreen os = new OptionScreen();
@@ -35,6 +39,7 @@ namespace BoxField
 
         private void instructionScreen_Click(object sender, EventArgs e)
         {
+            //Goes to instruction screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
             InstructionScreen Is = new InstructionScreen();
@@ -43,6 +48,7 @@ namespace BoxField
 
         private void exitButton_Click(object sender, EventArgs e)
         {
+            //Exits Game
             Application.Exit();
         }
 

@@ -36,12 +36,13 @@
             this.titleLabel = new System.Windows.Forms.Label();
             this.spaceshipLabel = new System.Windows.Forms.Label();
             this.spaceshipLabel2 = new System.Windows.Forms.Label();
+            this.dateLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // startButton
             // 
             this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startButton.Location = new System.Drawing.Point(291, 124);
+            this.startButton.Location = new System.Drawing.Point(291, 172);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(235, 68);
             this.startButton.TabIndex = 0;
@@ -52,7 +53,7 @@
             // optionsButton
             // 
             this.optionsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.optionsButton.Location = new System.Drawing.Point(291, 218);
+            this.optionsButton.Location = new System.Drawing.Point(291, 258);
             this.optionsButton.Name = "optionsButton";
             this.optionsButton.Size = new System.Drawing.Size(235, 68);
             this.optionsButton.TabIndex = 1;
@@ -63,7 +64,7 @@
             // exitButton
             // 
             this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exitButton.Location = new System.Drawing.Point(291, 398);
+            this.exitButton.Location = new System.Drawing.Point(291, 429);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(235, 68);
             this.exitButton.TabIndex = 3;
@@ -74,7 +75,7 @@
             // instructionScreen
             // 
             this.instructionScreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.instructionScreen.Location = new System.Drawing.Point(291, 310);
+            this.instructionScreen.Location = new System.Drawing.Point(291, 346);
             this.instructionScreen.Name = "instructionScreen";
             this.instructionScreen.Size = new System.Drawing.Size(235, 68);
             this.instructionScreen.TabIndex = 4;
@@ -112,12 +113,23 @@
             this.spaceshipLabel2.TabIndex = 7;
             this.spaceshipLabel2.Text = "label1";
             // 
+            // dateLabel
+            // 
+            this.dateLabel.AutoSize = true;
+            this.dateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateLabel.ForeColor = System.Drawing.Color.White;
+            this.dateLabel.Location = new System.Drawing.Point(291, 114);
+            this.dateLabel.Name = "dateLabel";
+            this.dateLabel.Size = new System.Drawing.Size(0, 31);
+            this.dateLabel.TabIndex = 8;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.spaceshipLabel2);
             this.Controls.Add(this.spaceshipLabel);
             this.Controls.Add(this.titleLabel);
@@ -141,5 +153,6 @@
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label spaceshipLabel;
         private System.Windows.Forms.Label spaceshipLabel2;
+        private System.Windows.Forms.Label dateLabel;
     }
 }

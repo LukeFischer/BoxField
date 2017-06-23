@@ -15,12 +15,14 @@ namespace BoxField
         public InstructionScreen()
         {
             InitializeComponent();
+            //Displays text instructions
             arrowInstructionLabel.Text = "Move with the arrow keys";
             mouseInstructionsLabel.Text = "Left click on mouse to shoot bullets";
         }
 
         private void okButton_Click(object sender, EventArgs e)
         {
+            //Go to main menu
             Form f = this.FindForm();
             f.Controls.Remove(this);
             MainMenu ms = new MainMenu();

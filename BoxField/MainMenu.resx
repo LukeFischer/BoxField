@@ -121,7 +121,7 @@
   <data name="spaceshipLabel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAJ8AAAEqCAYAAAALa4KSAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEzAAABMwAXkPvIAAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
+        YQUAAAAJcEhZcwAAEy8AABMvAUbVAlAAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
         AAAAD3RFWHRUaXRsZQBzcGFjZXNoaXCuCFxMAABFqklEQVR4Xu2dBdgdxfWHN55AjAhJIBAiREjQhJAg
         IZAEIkAcLy2lLVCghT/u0pZSrEBbvEiR4lakuBR3d3d3ic//9+7u/XK/e8/utb2f7nme9wncb+/M7My5
         I2fOnPFSKVlaiPXENeI18YL4P9FFpJJKVWW8eE64LH4QfxOpAqZSNRktnhHZipdhnjhCtBWppJKojBAP
@@ -426,7 +426,7 @@
   <data name="spaceshipLabel2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAJ8AAAEqCAYAAAALa4KSAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEzAAABMwAXkPvIAAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
+        YQUAAAAJcEhZcwAAEy8AABMvAUbVAlAAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
         AAAAD3RFWHRUaXRsZQBzcGFjZXNoaXCuCFxMAABFqklEQVR4Xu2dBdgdxfWHN55AjAhJIBAiREjQhJAg
         IZAEIkAcLy2lLVCghT/u0pZSrEBbvEiR4lakuBR3d3d3ic//9+7u/XK/e8/utb2f7nme9wncb+/M7My5
         I2fOnPFSKVlaiPXENeI18YL4P9FFpJJKVWW8eE64LH4QfxOpAqZSNRktnhHZipdhnjhCtBWppJKojBAP

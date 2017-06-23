@@ -32,10 +32,6 @@
             this.sizeTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // sizeTimer
-            // 
-            this.sizeTimer.Tick += new System.EventHandler(this.sizeTimer_Tick);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

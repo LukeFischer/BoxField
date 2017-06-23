@@ -116,5 +116,14 @@ namespace BoxField.Properties {
                 return ResourceManager.GetStream("Shotgun", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream siren {
+            get {
+                return ResourceManager.GetStream("siren", resourceCulture);
+            }
+        }
     }
 }

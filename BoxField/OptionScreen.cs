@@ -12,12 +12,16 @@ namespace BoxField
 {
     public partial class OptionScreen : UserControl
     {
+        //Creates random sizes and speeds of boxes compared to difficulty
         int randomCounter;
+        //Variable to track difficulty
         public static int difficulty;
+        //Random number generator
         Random randNum = new Random();
         public OptionScreen()
         {
             InitializeComponent();
+            //Initail values
             mediumButton.BackColor = Color.Orange;
             difficultyLabel.Text = " - 3 Lives \n\n\n -Moderate hero speed \n\n\n -Moderate box size \n\n\n -Moderate box speed";
             difficultyLabel.ForeColor = Color.Orange;
@@ -26,6 +30,7 @@ namespace BoxField
 
         private void easyButton_Click(object sender, EventArgs e)
         {
+            //Easy values
             difficulty = 1;
             if (randomCounter == 5)
             {
@@ -36,7 +41,9 @@ namespace BoxField
             Form1.heroSpeed = 15;
           
             Form1.boxSpeed = 3;
+            //Displays difficulty attributes 
             difficultyLabel.Text = " -5 Lives \n\n\n -Faster hero speed \n\n\n -Smaller boxes \n\n\n -Slower boxes";
+            //When not selected all other boxes will appear white
             difficultyLabel.ForeColor = Color.Yellow;
             easyButton.BackColor = Color.Yellow;
             mediumButton.BackColor = Color.White;
@@ -47,6 +54,7 @@ namespace BoxField
 
         private void mediumButton_Click(object sender, EventArgs e)
         {
+            //medium values
             difficulty = 2;
             int mediumRand = randNum.Next(1, 50);
             Form1.lives = 3;
@@ -63,6 +71,7 @@ namespace BoxField
 
         private void hardButton_Click(object sender, EventArgs e)
         {
+            //Hard values
             difficulty = 3;
             int hardRand = randNum.Next(1, 75);
             Form1.lives = 2;
@@ -79,6 +88,7 @@ namespace BoxField
 
         private void impossibleButton_Click(object sender, EventArgs e)
         {
+            //impossible values
             difficulty = 4;
             int impossibleRand = randNum.Next(1, 100);
             Form1.lives = 1;
@@ -95,6 +105,7 @@ namespace BoxField
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
+            //Go to main menu
             Form f = this.FindForm();
             f.Controls.Remove(this);
             MainMenu ms = new MainMenu();
@@ -103,6 +114,7 @@ namespace BoxField
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            //Timer tick for box size and speed
             randomCounter++;
         }
     }

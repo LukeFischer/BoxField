@@ -36,6 +36,9 @@
             this.boundaryLabel = new System.Windows.Forms.Label();
             this.pfastLabel = new System.Windows.Forms.Label();
             this.ammoLabel = new System.Windows.Forms.Label();
+            this.penentratingLabel = new System.Windows.Forms.Label();
+            this.clusterLabel = new System.Windows.Forms.Label();
+            this.pauseLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // gameLoop
@@ -74,10 +77,12 @@
             // boundaryLabel
             // 
             this.boundaryLabel.AutoSize = true;
+            this.boundaryLabel.BackColor = System.Drawing.Color.Transparent;
+            this.boundaryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boundaryLabel.ForeColor = System.Drawing.Color.Lime;
-            this.boundaryLabel.Location = new System.Drawing.Point(245, 141);
+            this.boundaryLabel.Location = new System.Drawing.Point(263, 151);
             this.boundaryLabel.Name = "boundaryLabel";
-            this.boundaryLabel.Size = new System.Drawing.Size(0, 13);
+            this.boundaryLabel.Size = new System.Drawing.Size(0, 31);
             this.boundaryLabel.TabIndex = 3;
             // 
             // pfastLabel
@@ -88,8 +93,9 @@
             this.pfastLabel.ForeColor = System.Drawing.Color.White;
             this.pfastLabel.Location = new System.Drawing.Point(351, 203);
             this.pfastLabel.Name = "pfastLabel";
-            this.pfastLabel.Size = new System.Drawing.Size(0, 42);
+            this.pfastLabel.Size = new System.Drawing.Size(223, 42);
             this.pfastLabel.TabIndex = 4;
+            this.pfastLabel.Text = "Fast Bullets!";
             // 
             // ammoLabel
             // 
@@ -100,11 +106,48 @@
             this.ammoLabel.Size = new System.Drawing.Size(0, 13);
             this.ammoLabel.TabIndex = 5;
             // 
+            // penentratingLabel
+            // 
+            this.penentratingLabel.AutoSize = true;
+            this.penentratingLabel.BackColor = System.Drawing.Color.Transparent;
+            this.penentratingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.penentratingLabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.penentratingLabel.Location = new System.Drawing.Point(335, 215);
+            this.penentratingLabel.Name = "penentratingLabel";
+            this.penentratingLabel.Size = new System.Drawing.Size(239, 29);
+            this.penentratingLabel.TabIndex = 6;
+            this.penentratingLabel.Text = "Penetrating bullets!";
+            // 
+            // clusterLabel
+            // 
+            this.clusterLabel.AutoSize = true;
+            this.clusterLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clusterLabel.ForeColor = System.Drawing.Color.White;
+            this.clusterLabel.Location = new System.Drawing.Point(355, 215);
+            this.clusterLabel.Name = "clusterLabel";
+            this.clusterLabel.Size = new System.Drawing.Size(182, 37);
+            this.clusterLabel.TabIndex = 7;
+            this.clusterLabel.Text = "Good Luck";
+            // 
+            // pauseLabel
+            // 
+            this.pauseLabel.AutoSize = true;
+            this.pauseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pauseLabel.ForeColor = System.Drawing.Color.White;
+            this.pauseLabel.Location = new System.Drawing.Point(334, 55);
+            this.pauseLabel.Name = "pauseLabel";
+            this.pauseLabel.Size = new System.Drawing.Size(216, 31);
+            this.pauseLabel.TabIndex = 8;
+            this.pauseLabel.Text = "Click to resume";
+            // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.pauseLabel);
+            this.Controls.Add(this.clusterLabel);
+            this.Controls.Add(this.penentratingLabel);
             this.Controls.Add(this.ammoLabel);
             this.Controls.Add(this.pfastLabel);
             this.Controls.Add(this.boundaryLabel);
@@ -132,5 +175,8 @@
         private System.Windows.Forms.Label boundaryLabel;
         private System.Windows.Forms.Label pfastLabel;
         private System.Windows.Forms.Label ammoLabel;
+        private System.Windows.Forms.Label penentratingLabel;
+        private System.Windows.Forms.Label clusterLabel;
+        private System.Windows.Forms.Label pauseLabel;
     }
 }

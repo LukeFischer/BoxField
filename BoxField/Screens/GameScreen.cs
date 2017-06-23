@@ -17,36 +17,47 @@ namespace BoxField
     {
         //player1 button control keys - DO NOT CHANGE
         Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, bDown, nDown, mDown, spaceDown;
-
+       
+        //Create a random number generator
         Random randNum = new Random();
+        
+        //Booleans to launch and stop functions
         public static bool active;
         public static bool invincible;
         public static bool horizontal;
         public static bool cluster;
         public static bool pause;
+        
         //keep score
         public static int score;
+        
         //Keep track of obstacles destroyed
         public static int destroyed;
-        //used to draw boxes on screen
+        
+        //keep track of how much ammo the player has
         int ammo;
+        
+        //Various variables for timer use and tracking
         int time;
         int ammoTime;
         int pfastTime;
+        
+        //Lists to track obstacles and bullets
         List<Obstacle> obstacles = new List<Obstacle>();
         List<Obstacle> bullets = new List<Obstacle>();
+        
+        //Set size of hero
         int heroSize;
         int pause1;
       
         //box values
         int newBoxCounter, topBoundary, bottomBoundary;
-        
+        //Track boundary time
         int countdown = 3;
+        
         //heroValues
         Obstacle dino;
 
-      
-       
         //bullet values
         
         public static int bulletSpeed;
@@ -54,20 +65,31 @@ namespace BoxField
 
         private void GameScreen_Click(object sender, EventArgs e)
         {
+           //Hide pause label and stop pause function
+            pauseLabel.Visible = false;
             pause = false;
+            
+            //Start game
             gameLoop.Start();
+
+            //Subtract one from ammo if clicked
             if (ammo > 0)
             {
                 ammo--;
             }
             
+            //Set bullet values
             bulletSpeed = 20;
             bulletSize = 10;
+
+            //Only create a new bullet if bullets are more than 0
             if (ammo > 0)
             {
                 Obstacle bullet = new Obstacle(dino.x, dino.y, bulletSize, bulletSpeed);
                 bullets.Add(bullet);
             }
+
+            //Bullet audio
             SoundPlayer player = new SoundPlayer(Properties.Resources.Shotgun);
             player.Play();
             
@@ -75,12 +97,16 @@ namespace BoxField
 
         public GameScreen()
         {
+            //Setting booleans to false
             InitializeComponent();
             OnStart();
             active = false;
             invincible = false;
             cluster = false;
-     
+            pfastLabel.Visible = false;
+            penentratingLabel.Visible = false;
+            clusterLabel.Visible = false;
+            pauseLabel.Visible = false;
         }
 
         /// <summary>
@@ -183,30 +209,39 @@ namespace BoxField
             {
                 if (time > 1000)
                 {
+                    //if time is greater than 1000 activate cluster and its label
                     cluster = true;
-
+                    penentratingLabel.Text = "";
+                    clusterLabel.Visible = true;
                 }
+                //Move box function
                 b.BoxMove();
+
+                //Activate fast boxes
                 b.smallBoxes();
             }
+            //Making the pause function by pressing space bar
             if (pause==true)
             {
                 gameLoop.Stop();
+                pauseLabel.Visible = true;
             }
             if (pause1==2)
             {
                 pause = false;
+                
             }
             #endregion
 
             #region add new box if it is time
-
+            //Setting boundary
             if (dino.y > 500 || dino.y == 500)
             {
                 
                 boundaryLabel.Text = "RETURN IN " + countdown+ " SECONDS OR DIE";
                 bottomBoundary++;
-         
+               
+
                 if (bottomBoundary == 60)
                 {
 
@@ -218,7 +253,7 @@ namespace BoxField
                 }
                 if (bottomBoundary == 180)
                 {
-                    countdown = 0;
+                    countdown = 3;
                 }
 
             }
@@ -227,7 +262,7 @@ namespace BoxField
                 boundaryLabel.Text = "RETURN IN " + countdown+ " SECONDS OR DIE";
                 topBoundary++;
                 
-               
+
                 if (topBoundary == 60)
                 {
                     countdown = 2;
@@ -238,34 +273,39 @@ namespace BoxField
                 }
                 if (topBoundary == 180)
                 {
-                    countdown = 0;
-                    gameLoop.Stop();
-                    Form f = this.FindForm();
-                    f.Controls.Remove(this);
-                    OverScreen os = new OverScreen();
-                    f.Controls.Add(os);
+                    countdown = 3;
+                   
                 }
 
             }
+            //reset boundary time values if you return back to the screen
             if (dino.y > 0 && dino.y < 500)
             {
+
                 boundaryLabel.Text = "";
                 topBoundary = 0;
                 bottomBoundary = 0;
                 countdown = 3;
             }
+
+            //if player destroys more than 10 obstacles launch fast bullet function
             if (destroyed >10)
             {
                 pfastTime++;
             }
+
+            //Start timers
             newBoxCounter++;
             score++;
             time++;
             ammoTime++;
+            
+            //Display score, objects destroyed and bullets left
             timeLabel.Text = Convert.ToString(time) + " " + "score";
             gsdestroyedLabel.Text = Convert.ToString(destroyed) + " " + "Objects Destroyed";
             ammoLabel.Text = Convert.ToString(ammo) + " " + "bullets left";
 
+            //After every 200 score add 10 bullets 
             if (ammoTime==200)
             {
                 ammo = ammo + 10;
@@ -273,6 +313,7 @@ namespace BoxField
                 SoundPlayer player = new SoundPlayer(Properties.Resources.Reload1);
                 player.Play();
             }
+            //If timer =5 add 1 box
             if (newBoxCounter == 5)
             {
                  
@@ -283,43 +324,47 @@ namespace BoxField
                 Obstacle b = new Obstacle(900, rand, boxRand, Form1.boxSpeed);
                 obstacles.Add(b);
 
-           
-
-          
-
+                //reset timer
                 newBoxCounter = 0;
             }
 
             #endregion
 
             #region Remove boxes off the screen
+            //Remove boxes once off the screen
             if (obstacles[0].y > this.Width)
 
             {
                 obstacles.RemoveAt(0);
             }
 
-
+            //If player has been out of bound for 3 seconds stop gameLoop and proceed to game over screen
             if (bottomBoundary == 180)
             {
                 countdown = 3;
-                gameLoop.Stop();
-            }
-            if (topBoundary==180)
-            {
-                countdown = 3;
-                
-                gameLoop.Stop();
                 Form f = this.FindForm();
                 f.Controls.Remove(this);
                 OverScreen os = new OverScreen();
                 f.Controls.Add(os);
+                gameLoop.Stop();
+                
+            }
+            if (topBoundary==180)
+            {
+                countdown = 3;
+
+                Form f = this.FindForm();
+                f.Controls.Remove(this);
+                OverScreen os = new OverScreen();
+                f.Controls.Add(os);
+                gameLoop.Stop();
 
             }
             
             #endregion
 
             #region move hero
+            //Hero movement values
             if (leftArrowDown == true)
             {
                 dino.Move("left");
@@ -340,11 +385,13 @@ namespace BoxField
             #endregion
 
             #region Check for collision between hero and obstacles
+            //Colision functions
             foreach (Obstacle b in obstacles)
             {
                 Boolean hasCollided = false;
                 hasCollided = dino.Collision(b);
 
+                //If player collides with object go to game over screen
                 if (hasCollided == true)
                 {
                     SoundPlayer player = new SoundPlayer(Properties.Resources.Bomb);
@@ -362,17 +409,22 @@ namespace BoxField
                 #endregion
                 foreach (Obstacle bullet in bullets)
                 {
+                    //if bullet hits object, remove  object
                     Boolean hasCollided2 = false;
                     hasCollided2 = bullet.Collision2(bullet, b);
 
                     if (hasCollided2 == true)
                     {
+                        //Add a bullet everytime you destroy an obstacle
                         ammo++;
                         obstacles.Remove(b);
+                        
+                        //Remove bullet as well if the penetrating bullets function is false
                         if (invincible == false)
                         {
                             bullets.Remove(bullet);
                         }
+                        //Add one to destroyed integer
                         destroyed++;
                         return;
                     }
@@ -385,25 +437,34 @@ namespace BoxField
 
             foreach (Obstacle b in bullets)
             {
+                //Bullet moves
                 b.bulletMove();
+
+                //If destroyed is greater than  10 launch fast bullets method for 100 ticks
                 if (destroyed >= 10)
                 {
-                   
-                    pfastLabel.Text = "Fast bullets";
-                    if (pfastTime==60)
+                    if (pfastTime < 100)
                     {
-                        pfastLabel.Visible = false;
+                        active = true;
+                        b.fastBullets();
+                        pfastLabel.Visible = true;
                     }
-
-                    b.fastBullets();
+                   
                     
-                    active = true;
-                    if (pfastTime >= 50)
+                    //After 100 ticks launch penetrating bullets function
+                    if (pfastTime>=100)
                     {
-                       // pfastLabel.Text = "Penetrating Bullets";
+
+                        pfastLabel.Visible = false; 
+                        pfastLabel.Text = "";
+                        penentratingLabel.Visible = true;
                         active = false;
                         invincible = true;
                     }
+
+                    
+                    
+                    
                     
                 }
             }
@@ -430,7 +491,7 @@ namespace BoxField
 
 
 
-
+            //Draw hero on the screen
             if (CharacterScreen.hero == 1)
             {
                 SolidBrush dinoBrush = new SolidBrush(Color.Green);
@@ -446,6 +507,8 @@ namespace BoxField
                 SolidBrush dinoBrush = new SolidBrush(Color.Yellow);
                 e.Graphics.FillEllipse(dinoBrush, dino.x, dino.y, dino.size, dino.size);
             }
+
+            
         }
     }
 }

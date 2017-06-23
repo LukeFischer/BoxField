@@ -17,6 +17,7 @@ namespace BoxField
         {
             InitializeComponent();
 
+            //Creates text on screen
             overLabel.Text = " You Lose";
             GameScreen.score = GameScreen.score / 60;
             scoreLabel.Text = "You lasted" + " " + GameScreen.score + " " + "seconds";
@@ -26,7 +27,9 @@ namespace BoxField
 
         private void replayButton_Click(object sender, EventArgs e)
         {
+            //Reset destroyed value
             GameScreen.destroyed = 0;
+            //Go to Gamescreen
             Form f = this.FindForm();
             f.Controls.Remove(this);
             GameScreen gs = new GameScreen();
@@ -36,6 +39,7 @@ namespace BoxField
 
         private void exitButton_Click(object sender, EventArgs e)
         {
+            //Exit game
             Application.Exit();
         }
     }
